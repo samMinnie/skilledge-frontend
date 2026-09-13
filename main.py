@@ -1,4 +1,4 @@
-```python
+python
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -239,4 +239,4 @@ def update_booking_status(
         "booking_id": booking_id,
         "status": status
     }
-```
+
