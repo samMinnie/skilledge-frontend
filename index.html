@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SkillBox Chiplun | Local Services</title>
+<title>SkillEdge | Local Services</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -18,6 +24,10 @@ body {
     background: #f5f7fb;
     color: #1f2937;
 }
+
+/* =========================
+   HEADER
+========================= */
 
 header {
     background: linear-gradient(135deg, #087f8c, #12a4b5);
@@ -31,12 +41,21 @@ header {
 .logo {
     display: flex;
     align-items: center;
+    min-height: 55px;
 }
 
 .logo img {
-    width: 260px;
+    width: 230px;
+    max-width: 100%;
     height: auto;
     display: block;
+}
+
+.logo-fallback {
+    display: none;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 nav a {
@@ -45,6 +64,14 @@ nav a {
     margin-left: 20px;
     font-weight: bold;
 }
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   HERO
+========================= */
 
 .hero {
     background: linear-gradient(135deg, #087f8c, #13a6ba);
@@ -78,6 +105,7 @@ nav a {
     border: none;
     border-radius: 8px;
     font-size: 16px;
+    outline: none;
 }
 
 .search-box button {
@@ -88,6 +116,10 @@ nav a {
     cursor: pointer;
     font-weight: bold;
 }
+
+/* =========================
+   SECTIONS
+========================= */
 
 section {
     padding: 50px 6%;
@@ -102,6 +134,14 @@ section {
     font-size: 30px;
     margin-bottom: 8px;
 }
+
+.section-title p {
+    color: #6b7280;
+}
+
+/* =========================
+   SERVICES
+========================= */
 
 .services {
     display: grid;
@@ -134,6 +174,7 @@ section {
 .card p {
     color: #6b7280;
     margin-bottom: 18px;
+    min-height: 45px;
 }
 
 .book-btn {
@@ -144,6 +185,18 @@ section {
     border-radius: 7px;
     cursor: pointer;
     font-weight: bold;
+}
+
+.book-btn:hover {
+    background: #065f69;
+}
+
+/* =========================
+   BOOKING SECTION
+========================= */
+
+#booking {
+    display: none;
 }
 
 .booking {
@@ -164,6 +217,13 @@ section {
     border: 1px solid #d1d5db;
     border-radius: 7px;
     font-size: 15px;
+    outline: none;
+}
+
+.booking input:focus,
+.booking select:focus,
+.booking textarea:focus {
+    border-color: #087f8c;
 }
 
 .booking label {
@@ -182,10 +242,41 @@ section {
     cursor: pointer;
 }
 
+.submit-btn:hover {
+    background: #065f69;
+}
+
 .submit-btn:disabled {
     opacity: 0.7;
     cursor: not-allowed;
 }
+
+/* =========================
+   BOOKING MESSAGE
+========================= */
+
+.booking-message {
+    display: none;
+    margin-top: 18px;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.booking-success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.booking-error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* =========================
+   CONTACT
+========================= */
 
 .contact {
     text-align: center;
@@ -214,6 +305,10 @@ section {
     background: #25d366;
 }
 
+/* =========================
+   FOOTER
+========================= */
+
 footer {
     background: #111827;
     color: white;
@@ -221,10 +316,20 @@ footer {
     padding: 25px;
 }
 
+footer p {
+    margin: 5px 0;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media (max-width: 900px) {
+
     .services {
         grid-template-columns: repeat(2, 1fr);
     }
+
 }
 
 @media (max-width: 600px) {
@@ -232,6 +337,10 @@ footer {
     header {
         flex-direction: column;
         gap: 12px;
+    }
+
+    nav {
+        text-align: center;
     }
 
     nav a {
@@ -258,34 +367,81 @@ footer {
     section {
         padding: 40px 18px;
     }
+
+    .booking {
+        padding: 20px;
+    }
+
+    .logo img {
+        width: 190px;
+    }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
+
     <div class="logo">
-        <img src="skilledge logo.png.png" alt="skilledge logo">
+
+        <img
+            src="./skilledge logo.png.png"
+            alt="SkillEdge Logo"
+            onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='block';"
+        >
+
+        <div id="logoFallback" class="logo-fallback">
+            SkillEdge
+        </div>
+
     </div>
 
+
     <nav>
+
         <a href="#home">Home</a>
+
         <a href="#services">Services</a>
-        <a href="#booking">Book</a>
+
+        <a href="#booking"
+           onclick="openBookingWithoutService(event)">
+            Book
+        </a>
+
         <a href="#contact">Contact</a>
+
     </nav>
+
 </header>
 
 
+
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero" id="home">
 
-    <h1>Find Trusted Local Professionals</h1>
+    <h1>
+        Find Trusted Local Professionals
+    </h1>
 
     <p>
-        SkillBox Chiplun connects you with skilled and trusted
-        local service professionals for your home, work and events.
+        SkillEdge connects you with skilled and trusted
+        local service professionals for your home,
+        work and events.
     </p>
+
 
     <div class="search-box">
 
@@ -293,188 +449,416 @@ footer {
             type="text"
             id="searchInput"
             placeholder="Search service e.g. Electrician"
-            onkeyup="searchServices()">
+            onkeyup="searchServices()"
+        >
 
-        <button onclick="searchServices()">Search</button>
+        <button onclick="searchServices()">
+            Search
+        </button>
 
     </div>
 
 </section>
 
+
+
+<!-- =========================
+     SERVICES
+========================= -->
 
 <section id="services">
 
     <div class="section-title">
-        <h2>Available Services</h2>
-        <p>Choose the service you need</p>
+
+        <h2>
+            Available Services
+        </h2>
+
+        <p>
+            Choose the service you need
+        </p>
+
     </div>
+
 
     <div class="services" id="serviceList">
 
+
+        <!-- Carpenter -->
+
         <div class="card" data-service="Carpenter">
-            <div class="icon">🪚</div>
-            <h3>Carpenter</h3>
-            <p>Furniture repair, woodwork and home improvement.</p>
-            <button class="book-btn"
-                onclick="selectService('Carpenter')">
+
+            <div class="icon">
+                🪚
+            </div>
+
+            <h3>
+                Carpenter
+            </h3>
+
+            <p>
+                Furniture repair, woodwork and home improvement.
+            </p>
+
+            <button
+                class="book-btn"
+                onclick="selectService('Carpenter')"
+            >
                 Book Now
             </button>
+
         </div>
+
+
+
+        <!-- AC Repair -->
 
         <div class="card" data-service="AC Repair">
-            <div class="icon">❄️</div>
-            <h3>AC Repair</h3>
-            <p>AC servicing, repair and installation.</p>
-            <button class="book-btn"
-                onclick="selectService('AC Repair')">
+
+            <div class="icon">
+                ❄️
+            </div>
+
+            <h3>
+                AC Repair
+            </h3>
+
+            <p>
+                AC servicing, repair and installation.
+            </p>
+
+            <button
+                class="book-btn"
+                onclick="selectService('AC Repair')"
+            >
                 Book Now
             </button>
+
         </div>
+
+
+
+        <!-- Mehndi Artist -->
 
         <div class="card" data-service="Mehndi Artist">
-            <div class="icon">🌿</div>
-            <h3>Mehndi Artist</h3>
-            <p>Bridal, wedding and event mehndi services.</p>
-            <button class="book-btn"
-                onclick="selectService('Mehndi Artist')">
+
+            <div class="icon">
+                🌿
+            </div>
+
+            <h3>
+                Mehndi Artist
+            </h3>
+
+            <p>
+                Bridal, wedding and event mehndi services.
+            </p>
+
+            <button
+                class="book-btn"
+                onclick="selectService('Mehndi Artist')"
+            >
                 Book Now
             </button>
+
         </div>
+
+
+
+        <!-- Driver -->
 
         <div class="card" data-service="Driver">
-            <div class="icon">🚗</div>
-            <h3>Driver</h3>
-            <p>Local and outstation driver services.</p>
-            <button class="book-btn"
-                onclick="selectService('Driver')">
+
+            <div class="icon">
+                🚗
+            </div>
+
+            <h3>
+                Driver
+            </h3>
+
+            <p>
+                Local and outstation driver services.
+            </p>
+
+            <button
+                class="book-btn"
+                onclick="selectService('Driver')"
+            >
                 Book Now
             </button>
+
         </div>
+
+
+
+        <!-- Labour -->
 
         <div class="card" data-service="Labour">
-            <div class="icon">👷</div>
-            <h3>Labour</h3>
-            <p>Reliable labour for home and construction work.</p>
-            <button class="book-btn"
-                onclick="selectService('Labour')">
+
+            <div class="icon">
+                👷
+            </div>
+
+            <h3>
+                Labour
+            </h3>
+
+            <p>
+                Reliable labour for home and construction work.
+            </p>
+
+            <button
+                class="book-btn"
+                onclick="selectService('Labour')"
+            >
                 Book Now
             </button>
+
         </div>
+
+
+
+        <!-- Electrician -->
 
         <div class="card" data-service="Electrician">
-            <div class="icon">⚡</div>
-            <h3>Electrician</h3>
-            <p>Electrical repair, wiring and installation.</p>
-            <button class="book-btn"
-                onclick="selectService('Electrician')">
+
+            <div class="icon">
+                ⚡
+            </div>
+
+            <h3>
+                Electrician
+            </h3>
+
+            <p>
+                Electrical repair, wiring and installation.
+            </p>
+
+            <button
+                class="book-btn"
+                onclick="selectService('Electrician')"
+            >
                 Book Now
             </button>
+
         </div>
+
+
+
+        <!-- Painter -->
 
         <div class="card" data-service="Painter">
-            <div class="icon">🎨</div>
-            <h3>Painter</h3>
-            <p>Home, office and commercial painting services.</p>
-            <button class="book-btn"
-                onclick="selectService('Painter')">
+
+            <div class="icon">
+                🎨
+            </div>
+
+            <h3>
+                Painter
+            </h3>
+
+            <p>
+                Home, office and commercial painting services.
+            </p>
+
+            <button
+                class="book-btn"
+                onclick="selectService('Painter')"
+            >
                 Book Now
             </button>
+
         </div>
 
+
+
+        <!-- Event Manager -->
+
         <div class="card" data-service="Event Manager">
-            <div class="icon">🎉</div>
-            <h3>Event Manager</h3>
-            <p>Wedding, birthday and other event management.</p>
-            <button class="book-btn"
-                onclick="selectService('Event Manager')">
+
+            <div class="icon">
+                🎉
+            </div>
+
+            <h3>
+                Event Manager
+            </h3>
+
+            <p>
+                Wedding, birthday and other event management.
+            </p>
+
+            <button
+                class="book-btn"
+                onclick="selectService('Event Manager')"
+            >
                 Book Now
             </button>
+
         </div>
+
 
     </div>
 
 </section>
 
 
+
+<!-- =========================
+     BOOKING
+========================= -->
+
 <section id="booking">
 
     <div class="section-title">
-        <h2>Book a Service</h2>
-        <p>Fill the form and request a service</p>
+
+        <h2>
+            Book a Service
+        </h2>
+
+        <p>
+            Fill the form and request a service
+        </p>
+
     </div>
+
 
     <div class="booking">
 
-        <form onsubmit="submitBooking(event)" id="bookingForm">
+        <form
+            id="bookingForm"
+            onsubmit="submitBooking(event)"
+        >
 
-            <label>Your Name</label>
+
+            <label>
+                Your Name
+            </label>
 
             <input
                 type="text"
                 id="name"
                 placeholder="Enter your name"
-                required>
+                required
+            >
 
 
-            <label>Mobile Number</label>
+
+            <label>
+                Mobile Number
+            </label>
 
             <input
                 type="tel"
                 id="phone"
                 placeholder="Enter mobile number"
-                required>
+                maxlength="10"
+                required
+            >
 
 
-            <label>Select Service</label>
 
-            <select id="service" required>
+            <label>
+                Select Service
+            </label>
 
-                <option value="">Select Service</option>
-                <option>Carpenter</option>
-                <option>AC Repair</option>
-                <option>Mehndi Artist</option>
-                <option>Driver</option>
-                <option>Labour</option>
-                <option>Electrician</option>
-                <option>Painter</option>
-                <option>Event Manager</option>
+            <select
+                id="service"
+                required
+            >
+
+                <option value="">
+                    Select Service
+                </option>
+
+                <option value="Carpenter">
+                    Carpenter
+                </option>
+
+                <option value="AC Repair">
+                    AC Repair
+                </option>
+
+                <option value="Mehndi Artist">
+                    Mehndi Artist
+                </option>
+
+                <option value="Driver">
+                    Driver
+                </option>
+
+                <option value="Labour">
+                    Labour
+                </option>
+
+                <option value="Electrician">
+                    Electrician
+                </option>
+
+                <option value="Painter">
+                    Painter
+                </option>
+
+                <option value="Event Manager">
+                    Event Manager
+                </option>
 
             </select>
 
 
-            <label>Address / Area</label>
+
+            <label>
+                Address / Area
+            </label>
 
             <textarea
                 id="address"
                 rows="3"
                 placeholder="Enter your address in Chiplun"
-                required></textarea>
+                required
+            ></textarea>
 
 
-            <label>Preferred Date</label>
+
+            <label>
+                Preferred Date
+            </label>
 
             <input
                 type="date"
                 id="date"
-                required>
+                required
+            >
 
 
-            <label>Additional Message</label>
+
+            <label>
+                Additional Message
+            </label>
 
             <textarea
                 id="message"
                 rows="3"
-                placeholder="Tell us about your requirement"></textarea>
+                placeholder="Tell us about your requirement"
+            ></textarea>
+
 
 
             <button
                 class="submit-btn"
                 id="submitButton"
-                type="submit">
-
+                type="submit"
+            >
                 Submit Booking
-
             </button>
+
+
+            <div
+                id="bookingMessage"
+                class="booking-message"
+            ></div>
+
 
         </form>
 
@@ -483,26 +867,45 @@ footer {
 </section>
 
 
-<section class="contact" id="contact">
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section
+    class="contact"
+    id="contact"
+>
 
     <div class="section-title">
-        <h2>Contact SkillBox Chiplun</h2>
-        <p>Need a service? Contact us.</p>
+
+        <h2>
+            Contact SkillEdge
+        </h2>
+
+        <p>
+            Need a service? Contact us.
+        </p>
+
     </div>
+
 
     <div class="contact-buttons">
 
-        <a class="call" href="tel:+91XXXXXXXXXX">
+        <a
+            class="call"
+            href="tel:+91XXXXXXXXXX"
+        >
             📞 Call Us
         </a>
+
 
         <a
             class="whatsapp"
             href="https://wa.me/91XXXXXXXXXX"
-            target="_blank">
-
+            target="_blank"
+        >
             💬 WhatsApp
-
         </a>
 
     </div>
@@ -510,15 +913,23 @@ footer {
 </section>
 
 
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
-    <p>© 2026 SkillBox Chiplun</p>
+    <p>
+        © 2026 SkillEdge
+    </p>
 
     <p>
         Connecting Chiplun with trusted local professionals.
     </p>
 
 </footer>
+
 
 
 <script>
@@ -532,16 +943,95 @@ const BACKEND_URL =
 
 
 /* =========================================
-   SELECT SERVICE
+   PAGE LOAD
+========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    /*
+       Today's date
+       prevents selecting an old date
+    */
+
+    const dateInput =
+        document.getElementById("date");
+
+    if (dateInput) {
+
+        const today =
+            new Date().toISOString().split("T")[0];
+
+        dateInput.min = today;
+
+    }
+
+});
+
+
+/* =========================================
+   OPEN BOOKING FROM SERVICE
 ========================================= */
 
 function selectService(serviceName) {
 
-    document.getElementById("service").value = serviceName;
+    const bookingSection =
+        document.getElementById("booking");
 
-    document.getElementById("booking").scrollIntoView({
-        behavior: "smooth"
-    });
+    const serviceSelect =
+        document.getElementById("service");
+
+    /*
+       Show booking section
+    */
+
+    bookingSection.style.display = "block";
+
+
+    /*
+       Select service automatically
+    */
+
+    serviceSelect.value = serviceName;
+
+
+    /*
+       Scroll to booking form
+    */
+
+    setTimeout(function () {
+
+        bookingSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }, 100);
+
+}
+
+
+/* =========================================
+   OPEN BOOKING FROM NAVIGATION
+========================================= */
+
+function openBookingWithoutService(event) {
+
+    event.preventDefault();
+
+    const bookingSection =
+        document.getElementById("booking");
+
+    bookingSection.style.display = "block";
+
+    setTimeout(function () {
+
+        bookingSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }, 100);
+
 }
 
 
@@ -551,20 +1041,25 @@ function selectService(serviceName) {
 
 function searchServices() {
 
-    let search =
-        document.getElementById("searchInput")
-        .value
-        .toLowerCase()
-        .trim();
+    const search =
+        document
+            .getElementById("searchInput")
+            .value
+            .toLowerCase()
+            .trim();
 
-    let cards =
+
+    const cards =
         document.querySelectorAll(".card");
 
-    cards.forEach(function(card) {
 
-        let service =
-            card.getAttribute("data-service")
-            .toLowerCase();
+    cards.forEach(function (card) {
+
+        const service =
+            card
+                .getAttribute("data-service")
+                .toLowerCase();
+
 
         if (service.includes(search)) {
 
@@ -577,6 +1072,51 @@ function searchServices() {
         }
 
     });
+
+}
+
+
+/* =========================================
+   PHONE VALIDATION
+========================================= */
+
+function validatePhone(phone) {
+
+    /*
+       Indian 10 digit mobile number
+    */
+
+    const phonePattern =
+        /^[6-9]\d{9}$/;
+
+    return phonePattern.test(phone);
+
+}
+
+
+/* =========================================
+   SHOW BOOKING MESSAGE
+========================================= */
+
+function showBookingMessage(message, type) {
+
+    const messageBox =
+        document.getElementById("bookingMessage");
+
+
+    messageBox.textContent = message;
+
+
+    messageBox.style.display = "block";
+
+
+    messageBox.className =
+        "booking-message " +
+        (type === "success"
+            ? "booking-success"
+            : "booking-error");
+
+
 }
 
 
@@ -588,15 +1128,278 @@ async function submitBooking(event) {
 
     event.preventDefault();
 
+
+    const submitButton =
+        document.getElementById("submitButton");
+
+
+    /*
+       Get form values
+    */
+
     const name =
-        document.getElementById("name").value.trim();
+        document
+            .getElementById("name")
+            .value
+            .trim();
+
 
     const phone =
-        document.getElementById("phone").value.trim();
+        document
+            .getElementById("phone")
+            .value
+            .trim();
+
 
     const service =
-        document.getElementById("service").value;
+        document
+            .getElementById("service")
+            .value;
+
 
     const address =
-        document.getElementById("address").value.trim();
+        document
+            .getElementById("address")
+            .value
+            .trim();
 
+
+    const date =
+        document
+            .getElementById("date")
+            .value;
+
+
+    const message =
+        document
+            .getElementById("message")
+            .value
+            .trim();
+
+
+    /* =====================================
+       BASIC VALIDATION
+    ===================================== */
+
+    if (!name) {
+
+        showBookingMessage(
+            "Please enter your name.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!validatePhone(phone)) {
+
+        showBookingMessage(
+            "Please enter a valid 10-digit mobile number.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!service) {
+
+        showBookingMessage(
+            "Please select a service.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!address) {
+
+        showBookingMessage(
+            "Please enter your address.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!date) {
+
+        showBookingMessage(
+            "Please select a preferred date.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    /* =====================================
+       DISABLE BUTTON
+    ===================================== */
+
+    submitButton.disabled = true;
+
+    submitButton.textContent =
+        "Submitting...";
+
+
+    showBookingMessage(
+        "Sending your booking request...",
+        "success"
+    );
+
+
+    try {
+
+        /* =================================
+           DATA SENT TO BACKEND
+        ================================= */
+
+        const bookingData = {
+
+            customer_name: name,
+
+            phone: phone,
+
+            service: service,
+
+            address: address,
+
+            booking_date: date,
+
+            message: message
+
+        };
+
+
+        /* =================================
+           SEND TO RENDER BACKEND
+        ================================= */
+
+        const response =
+            await fetch(
+                BACKEND_URL + "/bookings",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(bookingData)
+                }
+            );
+
+
+        /* =================================
+           RESPONSE
+        ================================= */
+
+        let result = null;
+
+        try {
+
+            result =
+                await response.json();
+
+        } catch (jsonError) {
+
+            result = null;
+
+        }
+
+
+        /* =================================
+           ERROR FROM SERVER
+        ================================= */
+
+        if (!response.ok) {
+
+            let errorMessage =
+                "Booking could not be submitted.";
+
+            if (
+                result &&
+                result.detail
+            ) {
+
+                errorMessage =
+                    typeof result.detail === "string"
+                        ? result.detail
+                        : "Please check the booking details.";
+
+            }
+
+            throw new Error(errorMessage);
+
+        }
+
+
+        /* =================================
+           SUCCESS
+        ================================= */
+
+        showBookingMessage(
+            "Booking submitted successfully! SkillEdge team will contact you soon.",
+            "success"
+        );
+
+
+        /*
+           Reset form
+        */
+
+        document
+            .getElementById("bookingForm")
+            .reset();
+
+
+        /*
+           Keep booking section open
+        */
+
+        document
+            .getElementById("booking")
+            .style.display = "block";
+
+
+    } catch (error) {
+
+        console.error(
+            "Booking Error:",
+            error
+        );
+
+
+        showBookingMessage(
+            "Booking failed. Please try again.",
+            "error"
+        );
+
+
+    } finally {
+
+        submitButton.disabled = false;
+
+        submitButton.textContent =
+            "Submit Booking";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+</html>
